@@ -3,17 +3,19 @@
     <input
     name="email"
     type="email"
-    placeholder="email"
+    placeholder="電子信箱"
     v-model="email"/>
     <br>
     <input
     name="password"
     type="password"
-    placeholder="password"
+    placeholder="密碼"
     v-model="password"/>
     <br>
     <button
-    @click="register">Register</button>
+    @click="register">註冊</button>
+    <br>
+    <p>{{ status }}</p>
   </div>
 </template>
 
@@ -25,16 +27,21 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      status: ''
     }
   },
   methods: {
     async register () {
-      const resR = await AuthService.register({
-        email: this.email,
-        password: this.password
-      })
-      console.log(resR.data)
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      if (re.test(String(this.email).toLowerCase())) {
+        await AuthService.register({
+          email: this.email,
+          password: this.password
+        })
+      } else {
+        this.status = 'ERROR: Email is invalid.'
+      }
     }
   }
 }
@@ -42,4 +49,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import '../assets/css/input.css';
 </style>

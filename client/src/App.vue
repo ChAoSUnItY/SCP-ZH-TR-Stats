@@ -1,5 +1,17 @@
 <template>
   <div id="app">
+    <div id="container-wrap">
+        <div id="header">
+            <img class="tataros" src="./assets/img/tataros.png">
+            <div id="header-title">
+                <h1><a href="/"><span>SCP基金會ZH-Site-17 Tartaros區資料庫</span></a></h1>
+
+                <h2><span>控制，收容，保護</span></h2>
+            </div>
+            <img class="tataros" src="./assets/img/tataros.png">
+        </div>
+    </div>
+    <br>
     <router-view/>
   </div>
 </template>
@@ -11,12 +23,5 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './assets/css/default.css';
 </style>

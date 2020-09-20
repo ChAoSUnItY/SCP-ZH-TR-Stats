@@ -1,6 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const admin = require('firebase-admin');
+
+admin.initializeApp({
+    credential: admin.credential.cert(require('../secret/firebase-secret.json'))
+});
+const db = admin.firestore();
 
 const app = express();
 app.use(cors());
@@ -17,6 +23,7 @@ app.post('/register', (req, res) => {
     res.send({
         message: `Hello ${req.body.email}! Your user was registered! Have fun!`
     })
+    db.collection('account').doc().set(req.body)
 })
 
 app.listen(PORT, () => {

@@ -1,0 +1,52 @@
+@font-face {
+    font-family: "SCP";
+    src: url(~@/assets/fonts/BH.ttf) format("truetype");
+}
+
+a {
+    color: inherit;
+}
+
+#content {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#header {
+    margin-top: -10px;
+    text-align: center;
+}
+
+#header > *, #header-title {
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.tataros {
+    height: 120px;
+    width: 120px;
+}
+
+h1 a span{
+    color: #eee;
+    background: transparent;
+    font-family: "SCP";
+    font-size: 150%;
+}
+
+h2 span {
+    margin: 0 auto;
+    display: block;
+    font-weight: bold;
+    color: #f0f0c0;
+    text-shadow: 1px 1px 1px #000;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.8);
+}
+
+body {
+    background: url(https://i.imgur.com/krKau4c.png) repeat-x, radial-gradient(circle, rgba(125,81,81,1) 0%, rgba(0,0,0,1) 100%);
+}
+
+#app {
+    text-align: center;
+}
