@@ -3,13 +3,13 @@
     <input
     name="email"
     type="email"
-    placeholder="電子信箱"
+    v-bind:placeholder="$t('registry.email_address')"
     v-model="email"/>
     <br>
     <input
     name="password"
     type="password"
-    placeholder="密碼"
+    v-bind:placeholder="$t('registry.password')"
     v-model="password"/>
     <br>
     <button
@@ -47,7 +47,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import '../assets/css/input.css';
 </style>
