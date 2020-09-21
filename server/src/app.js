@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const admin = require('firebase-admin');
 
+var auth = require('./api/post/auth');
+
 admin.initializeApp({
     credential: admin.credential.cert(require('../secret/firebase-secret.json'))
 });
@@ -15,15 +17,8 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 8081;
 
-app.get('/status', (req, res) => {
-    res.json({status:'ACPT'})
-})
-
 app.post('/register', (req, res) => {
-    res.send({
-        message: `Hello ${req.body.email}! Your user was registered! Have fun!`
-    })
-    db.collection('account').doc().set(req.body)
+    auth.register(req, res, db);
 })
 
 app.listen(PORT, () => {
