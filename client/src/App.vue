@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" style="background: url(https://i.imgur.com/krKau4c.png) repeat-x, radial-gradient(circle, rgba(125, 81, 81, 1) 0%, rgba(0, 0, 0, 1) 100%);">
     <div id="container-wrap">
         <div id="header">
             <img class="tataros" src="./assets/img/tataros.png">

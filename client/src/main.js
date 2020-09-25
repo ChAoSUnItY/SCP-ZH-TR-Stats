@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuetify from '@/plugins/vuetify'
+import vuetify from '@/plugins/vuetify'
 import App from './App'
 import router from './router'
 import store from './store'
@@ -35,10 +35,12 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  Vuetify,
   router,
   store,
-  components: { App },
   i18n,
+  vuetify,
+  components: {
+    App
+  },
   template: '<App/>'
-}).$mount('#app')
+})

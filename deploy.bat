@@ -7,9 +7,9 @@ cmd /c firebase deploy --project 726820887406
 cd ..
 echo STARTING DEPLOYING TO HEROKU (Node.js)...
 cd %~dp0\server\
-start /WAIT git add .
-start /WAIT git commit -m "%commitMessage%"
+cmd /WAIT git add .
+cmd /WAIT git commit -m "%commitMessage%"
 cmd /c git push heroku master
 cd ..
-start /WAIT git push api "%commitMessage%"
+cmd /WAIT git push api "%commitMessage%"
 echo ALL PROCESS ENDED, EXIT...

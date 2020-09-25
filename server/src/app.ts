@@ -1,9 +1,12 @@
+"use strict";
+
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const admin = require('firebase-admin');
 
-var auth = require('./api/post/auth');
+var authUnit = require('./api/post/auth');
+var testUnit = require('./api/test/test')
 
 admin.initializeApp({
     credential: admin.credential.cert(require('../secret/firebase-secret.json'))
@@ -17,8 +20,12 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 8081;
 
-app.post('/register', (req, res) => {
-    auth.register(req, res, admin.auth());
+app.post('/register', (req: any, res: any) => {
+    authUnit.register(req, res, admin.auth());
+})
+
+app.get('/test', (req: any, res: any) => {
+    testUnit.test(req, res)
 })
 
 app.listen(PORT, () => {

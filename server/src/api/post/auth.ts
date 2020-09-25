@@ -1,4 +1,6 @@
-exports.register = (req, res, auth) => {
+import { Request, Response } from 'express'
+
+exports.register = (req: Request, res: Response, auth: any) => {
     auth
     .createUser({
         email: req.body.email,

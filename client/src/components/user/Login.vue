@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>登入</h2>
-    <v-alert type="success">OOPS</v-alert>
+    <v-alert type="success" width="fit-content" class="mx-auto">OOPS</v-alert>
     <input
     name="email"
     type="email"
@@ -16,8 +16,8 @@
     v-bind:placeholder="$t('registry.password')"
     v-model="password"/>
     <br>
-    <button
-    @click="login">登入</button>
+    <v-btn
+    @click="login">登入</v-btn>
     <br>
     <p>{{ status }}</p>
   </div>
