@@ -1,52 +1,71 @@
 @font-face {
-    font-family: "SCP";
-    src: url(~@/assets/fonts/BH.ttf) format("truetype");
+  font-family: "SCP";
+  src: url(~@/assets/fonts/BH.ttf) format("truetype");
+}
+
+#container-wrap {
+  font-family: sans-serif, arial;
+  width: 100%;
 }
 
 a {
-    color: inherit;
-}
-
-#content {
-    width: 50%;
-    margin: 0 auto;
+  text-decoration: none;
+  color: inherit;
 }
 
 #header {
-    margin-top: -10px;
-    text-align: center;
+  text-align: left;
 }
 
-#header > *, #header-title {
-    margin: 0 auto;
-    display: inline-block;
+#header>*,
+#header-title {
+  top: -150px;
+  margin: 0 auto;
+  display: inline-block;
 }
 
 .tataros {
-    height: 120px;
-    width: 120px;
+  height: 120px;
+  width: 120px;
 }
 
-h1 a span{
-    color: #eee;
-    background: transparent;
-    font-family: "SCP";
-    font-size: 150%;
+h1 a span {
+  color: #eee;
+  background: transparent;
+  text-decoration: none;
+  font-family: "SCP";
+  font-size: 150%;
 }
 
 h2 span {
-    margin: 0 auto;
-    display: block;
-    font-weight: bold;
-    color: #f0f0c0;
-    text-shadow: 1px 1px 1px #000;
-    text-shadow: 1px 1px 1px rgba(0,0,0,.8);
+  margin-top: -20px;
+  display: block;
+  font-weight: bold;
+  color: #f0f0c0;
+  text-shadow: 1px 1px 1px #000;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .8);
 }
 
+.view {
+  font-family: Microsoft JhengHei, sans-serif, arial;
+}
+
+/* NAV START */
+
+.navbar {
+  margin-top: -30px;
+}
+
+/* NAV END */
+
+/* BODY BACKGROUND */
+
 body {
-    background: url(https://i.imgur.com/krKau4c.png) repeat-x, radial-gradient(circle, rgba(125,81,81,1) 0%, rgba(0,0,0,1) 100%);
+  background: url(https://i.imgur.com/krKau4c.png) repeat-x, radial-gradient(circle, rgba(125, 81, 81, 1) 0%, rgba(0, 0, 0, 1) 100%);
 }
 
 #app {
-    text-align: center;
+  text-align: center;
 }
+
+/* MOBILE VIEW */

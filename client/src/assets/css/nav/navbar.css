@@ -1,0 +1,34 @@
+nav {
+  width: 30%;
+  float: right;
+  padding-top: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav .menu-item {
+  bottom: 0;
+  color: #fff;
+  position: relative;
+  text-align: center;
+  display: flexbox;
+  font-size: 100%;
+  font-weight: bold;
+  flex: 1;
+}
+
+nav .menu-item.active,
+nav .menu-item:hover {
+  color: crimson;
+  background-color: floralwhite;
+  cursor: pointer;
+}
+
+nav .menu-item a {
+  vertical-align: middle;
+  margin: auto auto;
+  color: inherit;
+  text-decoration: none;
+  display: inline;
+}

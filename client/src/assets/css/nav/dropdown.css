@@ -1,0 +1,21 @@
+nav .menu-item .sub-menu {
+  position: absolute;
+  width: 100%;
+  background-color: floralwhite;
+}
+
+.sub-menu>.menu-item {
+  border-top: crimson solid 1px;
+  color: crimson;
+  display: block;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .5s ease-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

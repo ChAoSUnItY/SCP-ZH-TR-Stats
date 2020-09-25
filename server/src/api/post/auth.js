@@ -1,6 +1,18 @@
-exports.register = (req, res, db) => {
-    res.send({
-        message: `Hello ${req.body.email}! Your user was registered! Have fun!`
+exports.register = (req, res, auth) => {
+    auth
+    .createUser({
+        email: req.body.email,
+        emailVerified: false,
+        password: req.body.password,
+        displayName: 'Test Account',
+        diabled: false
     })
-    db.collection('account').doc().set(req.body)
+    .then(data => {
+        console.log(data);
+        res.json({ name: "secret" });
+    })
+    .catch(err => {
+        console.log(err);
+        res.send({ error: err});
+    })
 }

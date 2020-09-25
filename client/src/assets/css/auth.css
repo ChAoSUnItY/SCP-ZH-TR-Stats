@@ -1,0 +1,14 @@
+h2 {
+    color: white;
+}
+
+input {
+    margin: 10px auto;
+    padding: 5px 15px;
+    background: #ccc;
+    border: 2px rgb(124, 84, 84) solid;
+    cursor: auto;
+    border-width: 1px;
+    border-color: grey;
+    border-radius: 5px;
+}

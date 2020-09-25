@@ -18,7 +18,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 8081;
 
 app.post('/register', (req, res) => {
-    auth.register(req, res, db);
+    auth.register(req, res, admin.auth());
 })
 
 app.listen(PORT, () => {

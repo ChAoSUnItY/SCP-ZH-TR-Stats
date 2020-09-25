@@ -1,7 +1,7 @@
 import Api from '@/service/Api'
 
 export default {
-  register (data) {
+  async register (data) {
     return Api().post('/register', data)
   },
   status () {
