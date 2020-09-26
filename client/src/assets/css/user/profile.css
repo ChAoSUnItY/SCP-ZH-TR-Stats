@@ -1,0 +1,43 @@
+#page-content {
+    width: 90%;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
+.alert {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.leftLayout {
+    width: 43%;
+    float: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    height: fit-content;
+    padding: 5px 5px;
+}
+
+.rightLayout {
+    width: 46%;
+    float: right;
+}
+
+.rightLayout .avatar .userIMG {
+    border: gray 2px double;
+}
+
+.rightLayout .avatar .btn {
+    border: gray 2px double;
+}
+
+.rightLayout .avatar .btn .v-btn {
+    width: 100%;
+}
+
+.card {
+    flex: 1;
+    margin: 5px 5px;
+}

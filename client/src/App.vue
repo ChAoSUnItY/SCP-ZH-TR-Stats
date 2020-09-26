@@ -7,6 +7,7 @@
                 <h1><a href="/"><span>SCP基金會ZH-Site-17 Tartaros區資料庫</span></a></h1>
                 <h2><span>控制，收容，保護</span></h2>
             </div>
+            <NavLogout class="logout"/>
         </div>
         <Navbar class="navbar"/>
     </div>
@@ -17,11 +18,13 @@
 
 <script>
 import Navbar from './components/nav/Navbar'
+import NavLogout from './components/nav/Logout'
 
 export default {
   name: 'App',
   components: {
-    Navbar
+    Navbar,
+    NavLogout
   }
 }
 </script>

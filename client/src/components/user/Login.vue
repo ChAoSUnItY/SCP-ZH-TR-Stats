@@ -1,26 +1,26 @@
 <template>
-  <div>
-    <h2>登入</h2>
-    <v-alert type="success" width="fit-content" class="mx-auto">OOPS</v-alert>
-    <input
-    name="email"
-    type="email"
-    id="email-input"
-    v-bind:placeholder="$t('registry.email_address')"
-    v-model="email"/>
-    <br>
-    <input
-    name="password"
-    type="password"
-    id="password-input"
-    v-bind:placeholder="$t('registry.password')"
-    v-model="password"/>
-    <br>
-    <v-btn
-    @click="login">登入</v-btn>
-    <br>
-    <p>{{ status }}</p>
-  </div>
+    <div class="inputs">
+      <h2>登入</h2>
+      <v-text-field
+          v-model="email"
+          :rules="emailRules"
+          v-bind:label="$t('registry.email_address')"
+          color="green"
+          required
+      />
+      <v-text-field
+          v-model="password"
+          :rules="passwordRules"
+          v-bind:label="$t('registry.password')"
+          color="green"
+          required
+      />
+      <v-btn
+      @click="login"
+      >
+      登入
+      </v-btn>
+    </div>
 </template>
 
 <script>
@@ -33,26 +33,29 @@ export default Vue.extend({
   data () {
     return {
       email: '',
+      emailRules: [
+        v => !!v || 'Email address is required.',
+        v => /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'Invalid email address form.'
+      ],
       password: '',
+      passwordRules: [
+        v => !!v || 'Password is required.',
+        v => v.length >= 6 || 'Password length should be greater than 8 characters.'
+      ],
       status: ''
     }
   },
   methods: {
     async login () {
-      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      if (re.test(String(this.email).toLowerCase())) {
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(this.email, this.password)
-          .then(user => {
-            console.log(user)
-          })
-          .catch(err => {
-            console.log(err)
-          })
-      } else {
-        this.status = 'ERROR: Email is invalid.'
-      }
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(user => {
+          this.$router.push({ path: 'profile' })
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   }
 })

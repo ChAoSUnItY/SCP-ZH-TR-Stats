@@ -6,5 +6,11 @@ export default {
   },
   status () {
     return Api().get('/status')
+  },
+  async linkWikidotUsername (data) {
+    return Api().post('/link', data)
+  },
+  async getWikidotUsername (uid) {
+    return Api().get('/link', { params: { uid: uid } })
   }
 }
