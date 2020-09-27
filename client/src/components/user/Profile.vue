@@ -117,8 +117,9 @@ export default Vue.extend({
         .linkWikidotUsername({
           uid: this.user.uid,
           wikidotUsername: this.wikidotUsername
+        }).then(result => {
+          this.$router.go(this.$router.currentRoute)
         })
-      this.$router.go(this.$router.currentRoute)
     }
   }
 })

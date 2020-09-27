@@ -30,6 +30,7 @@ export default {
             .collection('linkages')
             .doc(req.body.uid)
             .set({ wikidotUsername: req.body.wikidotUsername })
+        res.send({ success: 'Link request is accepted and excuted!'})
     },
     getAccount(req: Request, res: Response, store: adm.firestore.Firestore) {
         store
