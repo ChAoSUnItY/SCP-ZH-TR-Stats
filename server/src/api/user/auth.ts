@@ -26,13 +26,19 @@ export default {
             })
     },
     link(req: Request, res: Response, store: adm.firestore.Firestore) {
-        store.collection('linkages').doc(req.body.uid).set({ wikidotUsername: req.body.wikidotUsername })
+        store
+            .collection('linkages')
+            .doc(req.body.uid)
+            .set({ wikidotUsername: req.body.wikidotUsername })
     },
     getAccount(req: Request, res: Response, store: adm.firestore.Firestore) {
-        store.collection('linkages').doc(req.query.uid as string).get().then(doc => {
+        store
+            .collection('linkages').doc(req.query.uid as string)
+            .get()
+            .then(doc => {
             res.json({ wikidotUsername: doc.data().wikidotUsername })
-        }).catch(err => {
+            }).catch(err => {
             console.log(err)
-        })
+            })
     }
 }

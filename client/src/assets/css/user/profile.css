@@ -1,7 +1,11 @@
 #page-content {
     width: 90%;
+    height: 100%;
     padding-top: 10px;
     margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: rgb(29, 29, 29);
 }
 
 .alert {
@@ -10,19 +14,18 @@
 }
 
 .leftLayout {
-    width: 43%;
+    width: 50%;
     float: left;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch;
-    height: fit-content;
-    padding: 5px 5px;
+    padding: 5px;
 }
 
 .rightLayout {
-    width: 46%;
-    float: right;
+    max-width: 30%;
+    display: inline-block;
 }
 
 .rightLayout .avatar .userIMG {
@@ -38,6 +41,10 @@
 }
 
 .card {
-    flex: 1;
-    margin: 5px 5px;
+    flex: auto;
+    margin: 5px 5px 5px 5px;
+}
+
+#tab {
+    min-height: 100%;
 }

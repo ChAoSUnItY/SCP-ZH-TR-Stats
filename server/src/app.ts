@@ -6,7 +6,8 @@ const cors = require('cors')
 const admin = require('firebase-admin')
 
 import { Request, Response } from 'express'
-import authUnit from './api/post/auth'
+import wikidotUnit from './api/wikidot/former'
+import authUnit from './api/user/auth'
 import testUnit from './api/test/test'
 
 admin.initializeApp({
@@ -18,6 +19,8 @@ const app = express()
 app.use(cors())
 app.use(morgan('combined'))
 app.use(express.json())
+
+app.set('json spaces', 4)
 
 const PORT = process.env.PORT || 8081
 
@@ -37,6 +40,16 @@ app.get('/test', (req: Request, res: Response) => {
     testUnit.test(req, res)
 })
 
+//WIKIDOT
+
+app.get('/user/:name/posts', (req: Request, res: Response) => {
+    wikidotUnit.getRecentArticles(req, res)
+})
+
 app.listen(PORT, () => {
     console.log(`Now listening on PORT ${PORT}!`)
 })
+
+export default {
+    debugMode: false
+}
