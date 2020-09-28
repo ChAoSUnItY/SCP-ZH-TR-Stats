@@ -13,7 +13,8 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    user: state => state.user
+    user: state => state.user,
+    isLoggedIn: state => state.user !== null
   },
   actions: {},
   modules: {}

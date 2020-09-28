@@ -65,6 +65,8 @@
           Your Posts
         </v-tab>
         <v-tab-item>
+          <div v-if="!postsLoadingStatus.done">Fetching Data......</div>
+          <div v-else-if="postsLoadingStatus.empty">Your wikidot account "{{ wikidotUsername }}" has no posts.<p></p></div>
           <v-card v-for="(item, index) in posts" :key="index" class="mx-1 card" max-width="max-width">
             <v-card-text class="text-left">
                 <a :href="item.url" class="text-h5 text--primary">{{ item.title }}</a><b style="float: right;">評分 {{ item.rating }}</b>
@@ -88,6 +90,10 @@ export default Vue.extend({
   data () {
     return {
       wikidotUsername: '',
+      postsLoadingStatus: {
+        done: false,
+        empty: false
+      },
       posts: []
     }
   },
@@ -100,9 +106,20 @@ export default Vue.extend({
         AuthService.getWikidotUsername(newVal.uid).then(result => {
           this.wikidotUsername = result.data['wikidotUsername']
           WikidotSevice.getAllPosts(this.wikidotUsername).then(result => {
-            result.data.forEach((val, i) => {
-              Vue.set(this.posts, i, val)
-            })
+            if (!Array.isArray(result.data)) {
+              console.log(result.data)
+              this.postsLoadingStatus = {
+                done: true,
+                empty: true
+              }
+            } else {
+              result.data.forEach((val, i) => {
+                Vue.set(this.posts, i, val)
+              })
+              this.postsLoadingStatus = {
+                done: true
+              }
+            }
           })
         })
       }
@@ -127,7 +144,4 @@ export default Vue.extend({
 
 <style scoped>
 @import "../../assets/css/user/profile.css";
-.v-window__container {
-    height: 100%
-  }
 </style>

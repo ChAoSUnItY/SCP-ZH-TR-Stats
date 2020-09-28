@@ -23,6 +23,10 @@ export default {
           link: '/register'
         },
         {
+          title: '帳戶',
+          link: '/profile'
+        },
+        {
           title: '登入',
           link: '/login'
         }
