@@ -7,6 +7,7 @@
 
 <script>
 import Vue from 'vue'
+import store from '../../store/index'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import { mapGetters } from 'vuex'
@@ -20,9 +21,10 @@ export default Vue.extend({
   },
   methods: {
     async logout () {
-      firebase
+      await firebase
         .auth()
         .signOut()
+      store.commit('updateWikidotInfo', null)
     }
   }
 })

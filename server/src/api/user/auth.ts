@@ -37,7 +37,10 @@ export default {
             .collection('linkages').doc(req.query.uid as string)
             .get()
             .then(doc => {
-            res.json({ wikidotUsername: doc.data().wikidotUsername })
+                res.json({
+                    wikidotUsername: doc.data().wikidotUsername,
+                    avatarURL: ''
+                })
             }).catch(err => {
             console.log(err)
             })

@@ -31,9 +31,9 @@
             <v-card class="mx-1 card" max-width="max-width">
               <v-card-text class="text-left">
                 <div>Wikidot Username</div>
-                <p class="text-h6 text--primary"><br/><v-badge color="green" v-if="wikidotUsername !== ''" content="OK">{{ wikidotUsername }}</v-badge></p>
+                <p class="text-h6 text--primary"><br/><v-badge color="green" v-if="wikidotUser.username !== ''" content="OK">{{ wikidotUser.username }}</v-badge></p>
                 <v-text-field
-                  v-model="wikidotUsername"
+                  v-model="wikidotUser.username"
                   label="wikidot username"
                   color="green"
                   required
@@ -54,10 +54,6 @@
                 src="https://image.flaticon.com/icons/png/512/36/36601.png"
                 class="userIMG"
               />
-              <div class="btn">
-                <input id="fileUpload" type="file" hidden />
-                <v-btn class="v-btn" @click="chooseFile">Upload</v-btn>
-              </div>
             </div>
           </v-layout>
         </v-tab-item>
@@ -66,7 +62,7 @@
         </v-tab>
         <v-tab-item>
           <div v-if="!postsLoadingStatus.done">Fetching Data......</div>
-          <div v-else-if="postsLoadingStatus.empty">Your wikidot account "{{ wikidotUsername }}" has no posts.<p></p></div>
+          <div v-else-if="postsLoadingStatus.empty">Your wikidot account "{{ wikidotUser.username }}" has no posts.<p></p></div>
           <v-card v-for="(item, index) in posts" :key="index" class="mx-1 card" max-width="max-width">
             <v-card-text class="text-left">
                 <a :href="item.url" class="text-h5 text--primary">{{ item.title }}</a><b style="float: right;">評分 {{ item.rating }}</b>
@@ -81,7 +77,6 @@
 
 <script>
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
 import AuthService from '@/service/AuthService'
 import WikidotSevice from '@/service/WikidotService'
 
@@ -89,7 +84,6 @@ export default Vue.extend({
   name: 'profile',
   data () {
     return {
-      wikidotUsername: '',
       postsLoadingStatus: {
         done: false,
         empty: false
@@ -98,31 +92,11 @@ export default Vue.extend({
     }
   },
   computed: {
-    ...mapGetters(['user'])
-  },
-  watch: {
-    user (newVal) {
-      if (newVal) {
-        AuthService.getWikidotUsername(newVal.uid).then(result => {
-          this.wikidotUsername = result.data['wikidotUsername']
-          WikidotSevice.getAllPosts(this.wikidotUsername).then(result => {
-            if (!Array.isArray(result.data)) {
-              console.log(result.data)
-              this.postsLoadingStatus = {
-                done: true,
-                empty: true
-              }
-            } else {
-              result.data.forEach((val, i) => {
-                Vue.set(this.posts, i, val)
-              })
-              this.postsLoadingStatus = {
-                done: true
-              }
-            }
-          })
-        })
-      }
+    user () {
+      return this.$store.getters.user
+    },
+    wikidotUser () {
+      return this.$store.getters.wikidotUser
     }
   },
   methods: {
@@ -133,11 +107,30 @@ export default Vue.extend({
       AuthService
         .linkWikidotUsername({
           uid: this.user.uid,
-          wikidotUsername: this.wikidotUsername
+          wikidotUser: this.wikidotUser.username
         }).then(result => {
           this.$router.go(this.$router.currentRoute)
         })
     }
+  },
+  mounted () {
+    WikidotSevice.getAllPosts(this.wikidotUser.username).then(result => {
+      if (!Array.isArray(result.data)) {
+        console.log(result.data)
+        this.postsLoadingStatus = {
+          done: true,
+          empty: true
+        }
+      } else {
+        result.data.forEach((val, i) => {
+          Vue.set(this.posts, i, val)
+        })
+        this.postsLoadingStatus = {
+          done: true,
+          empty: false
+        }
+      }
+    })
   }
 })
 </script>

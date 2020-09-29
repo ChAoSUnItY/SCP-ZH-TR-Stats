@@ -4,6 +4,7 @@
       <v-text-field
           v-model="email"
           :rules="emailRules"
+          type="email"
           v-bind:label="$t('registry.email_address')"
           color="green"
           required
@@ -11,6 +12,7 @@
       <v-text-field
           v-model="password"
           :rules="passwordRules"
+          type="password"
           v-bind:label="$t('registry.password')"
           color="green"
           required
@@ -25,6 +27,8 @@
 
 <script>
 import Vue from 'vue'
+import store from '../../store/index'
+import authService from '../../service/AuthService'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
@@ -47,10 +51,20 @@ export default Vue.extend({
   },
   methods: {
     async login () {
-      firebase
+      let user = null
+      await firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
-        .then(user => {
+        .then(result => {
+          user = result.user
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      await authService
+        .getWikidotUsername(user.uid)
+        .then(result => {
+          store.commit('updateWikidotInfo', { username: result.data['wikidotUsername'] })
           this.$router.push({ path: 'profile' })
         })
         .catch(err => {

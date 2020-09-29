@@ -8,14 +8,6 @@ import Profile from '@/components/user/Profile'
 
 Vue.use(Router)
 
-let requiredLogin = (to, from, next) => {
-  if (!store.getters.isLoggedIn) {
-    next()
-  } else {
-    next('/login')
-  }
-}
-
 const router = new Router({
   mode: 'history',
   routes: [
@@ -39,7 +31,11 @@ const router = new Router({
       name: 'profile',
       component: Profile,
       beforeEnter: (to, from, next) => {
-        requiredLogin(to, from, next)
+        if (store.getters.user) {
+          next()
+        } else {
+          next('/login')
+        }
       }
     }
   ]
