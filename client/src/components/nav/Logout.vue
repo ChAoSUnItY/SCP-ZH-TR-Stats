@@ -1,7 +1,7 @@
 <template>
   <div>
     <strong v-if="user">{{ user.displayName }} <a href="/" @click="logout">登出</a></strong>
-    <strong v-else><a href="/register">註冊帳號</a>或<a href="/login">登入</a></strong>
+    <strong v-else><router-link :to="`/${$i18n.locale}/register`">註冊帳號</router-link> 或 <router-link :to="`/${$i18n.locale}/login`">登入</router-link></strong>
   </div>
 </template>
 

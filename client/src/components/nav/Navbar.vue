@@ -1,8 +1,8 @@
 <template>
   <nav>
-      <div class="menu-item"><a href="/">主頁</a></div>
-      <div class="menu-item"><a href="#">從缺</a></div>
-      <div class="menu-item"><a href="#">從缺</a></div>
+      <div class="menu-item"><router-link :to="`/${$i18n.locale}`">主頁</router-link></div>
+      <div class="menu-item"><router-link :to="`/`">N/A</router-link></div>
+      <div class="menu-item"><router-link :to="`/`">N/A</router-link></div>
       <Dropdown title="帳戶" :items="services" />
   </nav>
 </template>
@@ -20,15 +20,15 @@ export default {
       services: [
         {
           title: '註冊',
-          link: '/register'
+          link: 'register'
         },
         {
           title: '帳戶',
-          link: '/profile'
+          link: 'profile'
         },
         {
           title: '登入',
-          link: '/login'
+          link: 'login'
         }
       ]
     }

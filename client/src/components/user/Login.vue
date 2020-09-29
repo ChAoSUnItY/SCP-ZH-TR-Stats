@@ -32,6 +32,8 @@ import authService from '../../service/AuthService'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
+import storeOBJ from '../../store/StoreObject'
+
 export default Vue.extend({
   name: 'register',
   data () {
@@ -64,8 +66,8 @@ export default Vue.extend({
       await authService
         .getWikidotUsername(user.uid)
         .then(result => {
-          store.commit('updateWikidotInfo', { username: result.data['wikidotUsername'] })
-          this.$router.push({ path: 'profile' })
+          store.commit('updateWikidotInfo', new storeOBJ.WikidotAccount(result.data['wikidotUsername']))
+          this.$router.push({ name: `profile`, params: { lang: `${this.$i18n.locale}` } })
         })
         .catch(err => {
           console.log(err)

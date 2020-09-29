@@ -32,6 +32,15 @@ Vue.use(firestorePlugin)
 
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+  let lang = to.params.lang
+
+  if (!lang) lang = 'tw'
+
+  i18n.locale = lang
+  next()
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
