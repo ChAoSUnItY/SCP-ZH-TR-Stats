@@ -45,14 +45,15 @@
           <v-layout class="rightLayout">
             <div class="avatar">
               <v-img
-                v-if="user.photoUrl === undefined"
+                v-if="!wikidotUser.avatarURL"
                 src="https://image.flaticon.com/icons/png/512/36/36601.png"
                 class="userIMG"
               />
               <v-img
                 v-else
-                src="https://image.flaticon.com/icons/png/512/36/36601.png"
+                :src="wikidotUser.avatarURL"
                 class="userIMG"
+                style="min-width: 225px;"
               />
             </div>
           </v-layout>
@@ -114,7 +115,7 @@ export default Vue.extend({
     }
   },
   mounted () {
-    WikidotSevice.getAllPosts(this.wikidotUser.username).then(result => {
+    WikidotSevice.getAllPosts(this.$store.getters.wikidotUser.username).then(result => {
       if (!Array.isArray(result.data)) {
         console.log(result.data)
         this.postsLoadingStatus = {

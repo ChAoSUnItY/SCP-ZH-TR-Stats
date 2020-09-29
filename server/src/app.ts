@@ -3,9 +3,9 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
-const admin = require('firebase-admin')
 
 import { Request, Response } from 'express'
+import admin from 'firebase-admin'
 import wikidotUnit from './api/wikidot/former'
 import authUnit from './api/user/auth'
 import testUnit from './api/test/test'
@@ -44,6 +44,10 @@ app.get('/test', (req: Request, res: Response) => {
 
 app.get('/user/:name/posts', (req: Request, res: Response) => {
     wikidotUnit.getRecentArticles(req, res)
+})
+
+app.get('/user/:name/avatar', (req: Request, res: Response) => {
+    wikidotUnit.getAvatarURL(req, res)
 })
 
 app.listen(PORT, () => {

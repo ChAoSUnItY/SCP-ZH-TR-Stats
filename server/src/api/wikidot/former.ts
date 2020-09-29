@@ -1,15 +1,15 @@
-const cheerio = require('cheerio')
-const got = require("got")
-
+import cheerio from 'cheerio'
+import got from 'got'
 import app from '../../app'
 import { json, Request, Response } from 'express'
 import wikidot from '../../util/wikidotHelper'
+import scraper from '../../util/scraper'
 
 class PageData {
     public preview: string
     public rating: string
 
-    constructor(public title: string, public url: string) {}
+    constructor(public title: string, public url: string) { }
 
     addPreview(text: string) {
         this.preview = text
@@ -21,12 +21,11 @@ class PageData {
 }
 
 export default {
-    getTopsTag(username: string, limit: number) {
+    getTopsTag(username: string, limit: number) { //UNUSED FUNCTION
         wikidot.ZHTR.listPages({
             created_by: `${username}`,
             limit: limit,
             perPage: "10000",
-
         })
     },
     async getRecentArticles(req: Request, res: Response) {
@@ -65,7 +64,16 @@ export default {
         if (app.debugMode)
             res.send($.html())
 
-        console.log(data)
         res.json(data)
+    },
+    async getAvatarURL(req: Request, res: Response) {
+        scraper
+            .getWikidotUserAvatar(req.params.name)
+            .then(result => {
+                res.json({ avatarURL: result})
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 }

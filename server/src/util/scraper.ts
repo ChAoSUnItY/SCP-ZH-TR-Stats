@@ -1,5 +1,6 @@
+const cheerio = require('cheerio');
+
 import got from 'got'
-import cheerio from 'cheerio';
 
 export default {
     getWikidotUserAvatar: async (username: string) => {
