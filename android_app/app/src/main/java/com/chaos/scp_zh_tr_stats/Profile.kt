@@ -8,10 +8,7 @@ class Profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.base, BaseFragment())
-        fragmentTransaction.commit()
+
 
         setContentView(R.layout.profile)
     }
